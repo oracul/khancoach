@@ -16,11 +16,37 @@ $.getJSON( "https://dl.dropboxusercontent.com/u/11613553/Khan%20data2.json", fun
 var items = [];
 
   $.each( data, function( i ) {
-    items.push( "<li>" + data[i].key_email + "</li>" );
-    items.push( "<li>" + data[i].all_proficient_exercises + "</li>")
+    var skills = data[i].all_proficient_exercises;
+    items.push( '<tr><td>' + data[i].nickname + 
+        '</td> <td><img height="25px" width="25px" src="' 
+        + data[i].avatar_url + '"</img></td><td><li>' 
+        + skills + '</li></td></tr>' );
   });
 
-$( "<ul/>", {
+$( "<table/>", {
+    "class": "exercises",
+    html: items.join( "" )
+  }).appendTo( "body" );
+
+
+}); 
+
+$.getJSON( "https://dl.dropboxusercontent.com/u/11613553/Khan%20data2.json", function( data2 ) {
+    
+  console.log("success");
+
+var items = [];
+
+$.each( data2 , function(i){
+    if ($.inArray('addition_1', data2[i].all_proficient_exercises) > -1) {
+    items.push("true");
+    } else {
+    items.push("false");
+    }
+    });
+
+
+$( "<div>", {
     "class": "exercises",
     html: items.join( "" )
   }).appendTo( "body" );

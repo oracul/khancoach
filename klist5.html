@@ -1,0 +1,74 @@
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+</head>
+
+<body>
+
+    <span></span>
+
+    <script type="text/javascript">
+
+$.getJSON( "https://dl.dropboxusercontent.com/u/11613553/Khan%20data2.json", function( data, i ) {
+
+var items=[];
+
+
+$.each(data, function(i){
+   
+    var rskills = ["evaluating_expressions_1", "linear_equations_2"];
+    var nickname= data[i].nickname;
+    var allskill = data[i].all_proficient_exercises;
+
+    var unique = $.grep(allskill, function(element) {
+        return $.inArray(element, rskills) !== -1;
+    });
+
+    console.log(unique);
+        if($.inArray(allskill, rskills) !== -1){
+            console.log(allskill);
+        } else {
+        console.log('false');
+    };
+  
+  var split = unique.split('...');
+
+    items.push( '<tr><td>' + data[i].nickname + 
+        '</td> <td><img height="25px" width="25px" src="' 
+        + data[i].avatar_url + '"</img></td><td>' + split + '</td>' );
+
+//    if($.inArray(allskill, rskills) !== -1){
+ //       var split = [];
+ //       $.each(allskill, function (i2) {
+  //      items.push(split[i2]);
+//        });
+//       items.push('</tr>');
+//    } else {
+//        items.push('<td></td></tr>');
+
+ //   }
+
+
+    });
+
+//    if($.inArray(nickname, rskills) !== -1){
+//        console.log("true");
+//        items.push('<li>' + nickname + '</li>');
+//    } else {
+//    console.log("false");
+//    }
+
+    
+$( "<ul/>", {
+    "class": "exercises",
+    html: items.join( "" )
+  }).appendTo( "body" );
+
+
+});
+
+</script>
+</body>
+</html>

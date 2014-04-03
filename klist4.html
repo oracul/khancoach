@@ -1,0 +1,54 @@
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+</head>
+
+<body>
+
+    <span></span>
+
+    <script type="text/javascript">
+
+$.getJSON( "https://dl.dropboxusercontent.com/u/11613553/Khan%20data2.json", function( data, i ) {
+
+$.each(data, function(i){
+    var rskills = ['number-opposites','addition_1','mduran@intrinsicschools.org','mduran'];
+    var nickname= data[i].nickname;
+
+if($.inArray(nickname, rskills) !== -1){
+    console.log("true");
+} else {
+    console.log("false");
+}
+
+});
+    
+console.log("success");
+
+var items = [];
+var rskills = ['number-opposites','addition_1','mduran@intrinsicschools.org','mduran'];
+
+var fskill = $.grep(rskills, function (value, i){
+     return (value.indexOf('n') == 0);
+});
+
+var nickname = data.nickname;
+
+var common = $.grep(rskills, function(i) {
+    return $.inArray(i, nickname !== -1);
+});
+
+
+
+
+console.log(nickname);
+
+console.log(common);
+
+});
+
+</script>
+</body>
+</html>

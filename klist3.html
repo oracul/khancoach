@@ -1,0 +1,60 @@
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+</head>
+
+<body>
+
+    <span></span>
+
+    <script type="text/javascript">
+
+$.getJSON( "https://dl.dropboxusercontent.com/u/11613553/Khan%20data2.json", function( data ) {
+    
+console.log("success");
+
+$.each(data, function(i){
+ console.log("data[i].key_email")
+});
+
+var items = [];
+var rskills = ['number-opposites','addition_1'];
+
+var fskill = $.grep(rskills, function (value, i){
+     return (value.indexOf('n') == 0);
+});
+
+var common = $.grep(rskills, function(i) {
+    return $.inArray(i, data.key_email) !== -1;
+});
+
+$.each(common, function(i){
+items.push(common[i]);
+    });
+
+console.log(data.key_email);
+console.log(common);
+
+
+$( "<ul/>", {
+    "class": "my-new-list",
+    html: items.join( "" )
+  }).appendTo( "body" );
+
+  }); 
+
+var a = ['a', 'b', 'c', 'd', 'e'],
+    b = ['a', 'd', 'e', 'c'];
+
+var common2 = $.grep(a, function(element) {
+    return $.inArray(element, b) !== -1;
+});
+
+console.log(common2); 
+
+
+</script>
+</body>
+</html>
